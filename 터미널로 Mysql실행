@@ -1,0 +1,6 @@
+terminal을 실행
+/usr/local/mysql/bin으로 이동
+./mysql -uroot -p 입력
+패스워드입력
+
+실행완료

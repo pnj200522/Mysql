@@ -15,5 +15,5 @@ select 칼럼이름1,칼럼이름2,... from 테이블이름 where 칼럼이름 l
 alter table 테이블이름 change 칼럼이름 바꾸고싶은이름 구조; //필드명 변경
 alter table 테이블이름 drop 칼럼이름;                  //칼럼지우기
 alter table 테이블이름 add 칼럼이름 구조;               //칼럼 추가
-alter table 테이블이름 modify 칼럼이름 구조;            //칼럼 변경
-alter table 테이블이름 rename 바꾸고싶은이름;           //테이블명 변경
+alter table 테이블이름 modify 칼럼이름 바꾸고싶은구조;     //칼럼 수정
+alter table 테이블이름 rename 바꾸고싶은이름;            //테이블명 변경

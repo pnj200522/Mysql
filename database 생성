@@ -1,0 +1,5 @@
+SHOW DATABASES;         //databases 보기
+CREATE DATABASES 데이터베이스이름     //데이터베이스 생성
+USE 데이터베이스이름                  //데이터베이스 사용
+SHOW TABLES;                     //사용된 데이터베이스 안 테이블 보기
+DESC 테이블이름;                    //테이블 인자들의 자료형 보기

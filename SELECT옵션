@@ -1,0 +1,12 @@
+SELECT select_expr
+[FROM table_references]
+[WHERE where_condition]
+[GROUP BY {col_name | expr | position}]
+[HAVING where_condition]
+[ORDER BY {col_name | expr | position}]
+
+-------------------------------------------------------------
+
+SELECT 열이름
+FROM 테이블이름
+WHERE 조건

@@ -1,0 +1,2 @@
+SELECT * FROM 테이블이름 ORDER BY 컬럼이름;      #해당컬럼을 오름차순으로 정렬.
+SELECT * FROM 테이블이름 ORDER BY 컬럼이름 DESC; #해당컬럼을 내림차순으로 정렬.

@@ -4,7 +4,8 @@ SELECT select_expr
 [GROUP BY {col_name | expr | position}]
 [HAVING where_condition]
 [ORDER BY {col_name | expr | position}]
-
+순서를 지켜야함!
+SELECT - WHERE - GROUP BY - HAVING - ORDER BY
 -------------------------------------------------------------
 
 SELECT 열이름

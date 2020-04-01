@@ -5,7 +5,7 @@ SELECT select_expr
 [HAVING where_condition]
 [ORDER BY {col_name | expr | position}]
 순서를 지켜야함!
-SELECT - WHERE - GROUP BY - HAVING - ORDER BY
+SELECT - FROM - WHERE - GROUP BY - HAVING - ORDER BY
 -------------------------------------------------------------
 
 SELECT 열이름

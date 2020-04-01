@@ -1,0 +1,13 @@
+SELECT 칼럼이름 FROM 테이블이름 GRUOP BY 묶고 싶은 칼럼;                    #중복되는 인자를 한개로 뭉쳐줌.
+SELECT 칼럼이름,SUM (칼럼이름2) FROM 테이블이름 GRUOP BY 묶고 싶은 칼럼;      #칼럼이름2를 합해서 출력.
+SELECT 칼럼이름 AS '원하는제목',SUM(칼럼이름2) AS '원하는 제목' FROM 테이블이름 GRUOP BY 묶고 싶은 칼럼;
+
+
+*집계함수
+AVG()   #평균을 구한다.
+MIN()   #최소값을 구한다.
+MAX()   #최대값을 구한다.
+COUNT() #행의 개수를 센다.
+COUNT(DISTINCT) #행의 개수를 센다.(중복은 1개만 인정)
+STDEV()  #표준편차를 구한다.
+VAR_SAMP()  #분산을 구한다.

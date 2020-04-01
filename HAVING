@@ -13,4 +13,4 @@ SELECT userID AS '사용자', SUM(price*amount) AS '총구매액'
   HAVING SUM(price*amount) > 1000 ;
   
 순서에 맞게 작성
-SELECT - FROM - WHERE -   
+SELECT - FROM - WHERE - GROUP BY - HAVING - ORDER BY

@@ -1,0 +1,16 @@
+SELECT userID AS '사용자', SUM(price*amount) AS '총구매액'
+  FROM buyTbl
+  WHERE SUM(price*amount) > 1000
+  GROUP BY userID;
+  
+위 처럼하면 에러가 남 -> Error Code 1111. Invaild use of group function.(WHERE는 집계함수를 쓸 수 없음.)
+
+따라서 해결방안은 WHERE 대신 HAVING을 쓰는 것.
+
+SELECT userID AS '사용자', SUM(price*amount) AS '총구매액'
+  FROM buyTbl
+  GROUP BY userID
+  HAVING SUM(price*amount) > 1000 ;
+  
+순서에 맞게 작성
+SELECT - FROM - WHERE -   

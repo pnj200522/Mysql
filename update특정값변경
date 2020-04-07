@@ -1,0 +1,7 @@
+## Developer 테이블의 Position이 Frontend인 컬럼의 Browser값을 Chrome 으로 변경하세요.
+
+UPDATE Developer SET Browser = 'Chrome' WHERE position = 'Frontend';
+
+--------------------------------------------------------------------------
+
+UPDATE 테이블이름 SET 바꾸고싶은컬럼(위치) = '바꿀 데이터' WHERE 바꾸고싶은(같은위치의) = '그위치의 데이터';

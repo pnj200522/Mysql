@@ -1,0 +1,21 @@
+sqlplus (id)/(password) as sysdba                 //sqlplus에 (id)의 사용자이름으로, sysdba의 권한으로 접속한다.
+[Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production]
+
+SQL접속 후
+
+show user;
+[USER is "SYS"]
+
+alter user hr identified by hr account unlock;
+[User altered.]
+
+grant dba to hr;
+[Grant succeeded.]
+
+@ ctrl + demobld.sql 파일드래그
+[Session altered]
+
+col tname for a20;
+
+select * from tab;

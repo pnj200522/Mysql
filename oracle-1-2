@@ -1,0 +1,48 @@
+/*
+select
+    sal salary,
+    comm commision,
+    sal + nvl(comm,0) as "Monthly",
+    12*(sal + nvl(comm,0)) as "Annual SAL"
+from emp
+*/
+--리터럴 문자열, 연결연산자
+
+--select ename, sal, ename||sal
+--from emp;
+--select 1 empno
+--from emp;
+
+
+--select 'SQL IS SO FUN '||ename||' '||sal||100
+--from emp;
+
+--select 1, empno,1||empno
+--from emp;
+
+--select 'kim', empno 
+--from emp;
+--""는 as쓸때만 쓴다.
+--select empno || ' S ENAME IS '||ename
+--from emp;
+--''가 너무 남발할때
+
+--select empno || Q'['S ENAME IS]'||ename
+--from emp;
+--[] = SS
+
+--select empno || Q'S'S ENAME IS S'||ename
+--from emp;
+
+--select distinct department_id
+--from employees;
+
+--select distinct job_id
+--from employees;
+--
+--select job_id
+--from employees;
+--distinct 중복제거
+
+--select distinct department_id, job_id
+--from employees;

@@ -1,0 +1,33 @@
+ALTER SESSION SET nls_date_format = 'yyyy/mm/dd';         //표의 날짜 형식을 yyyy/mm/dd의 형식으로 바꿔줌(DDL이기 때문에 이전 쿼리문 commit됨)
+
+SELECT SYSDATE FROM DUAL;                                 //현재 날짜.
+
+INSERT INTO EMP(EMPNO, ENAME, HIREDATE) VALUES(9999, 'KIM', SYSDATE-1);
+SYSDATE는 시간 까지 나타내는 함수이므로 BETWEEN이나 00:00:00로 인식하는 함수에선 조심히 사용.
+
+BETWEEN '1981/12/31' AND '1981/01/01';                     //앞에는 하한값, 뒤에는 상한값
+
+#문장 A
+SELECT *
+FROM EMPLOYEES
+WHERE DEPARTMENT_ID = 10
+OR DEPARTMENT_ID = 20
+OR DEPARTMENT_ID = 30
+OR DEPARTMENT_ID = 40
+OR DEPARTMENT_ID = 50;                                      
+
+#문장 B
+SELECT *
+FROM EMPLOYEES
+WHERE DEPARTMENT_ID IN (10,20,30,40,50);                    // 문장 A = 문장 B = 문장 C
+
+#문장 C
+SELECT * FROM EMPLOYEES WHERE DEPARTMENT_ID = 10
+UNION ALL
+SELECT * FROM EMPLOYEES WHERE DEPARTMENT_ID = 20
+UNION ALL
+SELECT * FROM EMPLOYEES WHERE DEPARTMENT_ID = 30
+UNION ALL
+SELECT * FROM EMPLOYEES WHERE DEPARTMENT_ID = 40
+UNION ALL
+SELECT * FROM EMPLOYEES WHERE DEPARTMENT_ID = 50;

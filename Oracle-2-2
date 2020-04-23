@@ -1,29 +1,30 @@
+## LIKE
 SELECT * FROM EMP WHERE ENAME LIKE '%L%';               //ENAME에 L이 들어간 행 출력.
 
-
+## ESCAPE
 SELECT * FROM EMP WHERE ENAME LIKE '%P%%' ESCAPE 'P';         //와일드카드(%,_언더바)가 들어간 행 출력.P는 아무거나 씀.
 
 SELECT * FROM EMP WHERE ENAME LIKE '%P%%%' ESCAPE 'P';        //위와 같음.
 
-
+## IS NULL, IS NOT NULL
 SELECT * FROM EMP WHERE MGR IS NULL;                            //MGR이 NULL이거나 아닌 행들 출력.
 SELECT * FROM EMP WHERE MGR IS NOT NULL;
 
-
+## IN(LIST), NOT IN(LIST)
 SELECT * FROM EMP WHERE JOB IN ('SALESMAN','MANAGER');       //파라미터인 행이거나 아닌 행 출력.
 SELECT * FROM EMP WHERE JOB NOT IN ('SALESMAN','MANAGER');
 
-
+## BETWEEN AND
 SELECT * FROM EMP WHERE SAL NOT BETWEEN 2000 AND 5000;      //SAL이 2000이상 5000이하가 아닌 행들 출력.
 
-
+## ORDER BY의 컬럼 갯수
 SELECT ENAME, MGR "Manager", DEPTNO, SAL, COMM
 FROM EMP
 WHERE DEPTNO IN (10,30)
 ORDER BY "Manager" DESC;                                    //EMP테이블에 DEPTNO가 10이거나 30인 행들을 MGR값정렬해서 출력.
                                                             //ORDER BY에 두개 이상 컬럼을 사용할 수 있다. (하지만 우선순위는 첫번째부터.)
                                                            
-
+## UPPER, LOWER, INITCAP
 SELECT UPPER(ENAME), LOWER(ENAME), INITCAP(ENAME)
 FROM EMP;                                                   //UPPER는 파라미터 값을 대문자로,LOWER는 소문자로, INITCAP은 첫글자만 대문자로
 

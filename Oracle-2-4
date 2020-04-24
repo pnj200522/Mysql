@@ -29,7 +29,8 @@ FROM EMP;
 
 ## SUBSTR 함수
 
-SELECT 'SQL IS SO FUN' SUBSTR('SQL IS SO FUN', 8, 4)
+SELECT 'SQL IS SO FUN'
+, SUBSTR('SQL IS SO FUN', 8, 4)
 FROM DUAL;                                                  //8은 앞쪽부터 공백포함 8번째, 4는 8번째부터 오른쪽으로 4번가기
 
 SELECT 'SQL IS SO FUN'

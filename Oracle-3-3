@@ -1,0 +1,35 @@
+## 날짜 함수에 ROUND 와 TRUNC
+
+SELECT HIREDATE, TRUNC(HIREDATE, 'MONTH')
+FROM EMP
+WHERE TRUNC(HIREDATE, 'MONTH') = '1981/02/01';    //1981년 2월달에 입사한 사람 검색.
+
+SELECT '2019/09/19'
+, ROUND('2019/09/19','DAY')
+FROM DUAL;                                      //오류 ORA-01722: invalid number
+
+오류를 없애기 위해 '2019/09/19'를 TO_DATE해줌.
+
+# 날짜 함수에 ROUND
+
+SELECT '2019/09/19'
+, ROUND(TO_DATE('2019/09/19'), 'DAY')
+FROM DUAL;                                      //일주일로 반올림. 목요일 부터 다음 주 수요일까지 그 사이에 있는 일요일 날짜를 나타냄.
+
+SELECT '2019/09/19'
+, ROUND(TO_DATE('2019/09/19'), 'MONTH')
+FROM DUAL;                                      //월을 반올림. 1일 ~ 15일 까지는 해당 월, 16일 ~ 말일 까지는 다음 달.
+
+# 날짜 함수에 TRUNC
+
+SELECT '2019/09/19'
+, TRUNC(TO_DATE('2019/09/19'), 'DAY')  ----->(  세 문장 모두 같다. )
+, TRUNC(TO_DATE('2019/09/19'), 'DY')
+, TRUNC(TO_DATE('2019/09/19'), 'D')
+FROM DUAL;                                      //일주일로 내림. 일 (월 화 수 목 금 토) 맨 앞 일요일 날짜를 나타냄.
+
+SELECT '2019/09/19'
+, TRUNC(TO_DATE('2019/09/19'), 'MONTH')
+FROM DUAL;                                      //매월 1일을 보여줌.
+
+

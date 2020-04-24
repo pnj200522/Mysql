@@ -1,0 +1,43 @@
+## 날짜 함수
+
+SELECT SYSDATE
+, SYSDATE + 1         //현재 날짜에서 하루 더함.
+, SYSDATE + 10         //현재 날짜에서 10일 더함.
+, SYSDATE + 100         //현재 날짜에서 100일 더함.
+, SYSDATE + 1000         //현재 날짜에서 1000일 더함.
+, SYSDATE + 10000         //현재 날짜에서 10000일 더함.
+FROM DUAL;
+
+SELECT SYSDATE - '1995/01/01'
+FROM DUAL;                        //오류
+
+위의 오류가 난 이유는 '1995/01/01'이 날짜인지 문자열인지 알 수 없기 때문
+따라서
+
+SELECT SYSDATE - TO_DATE('1995/01/01')
+FROM DUAL;
+이렇게 나타내줘야 함.
+
+SELECT SYSDATE + SYSDATE
+FROM DUAL;                        //오류 ORA-00975: date + date not allowed
+
+SELECT SYSDATE * 3		          	//오류 ORA-00932: inconsistent datatypes: expected NUMBER got DATE
+FROM DUAL;
+
+
+## RR형식 VS YY형식
+
+YY = 현재 세기 + 지정된 날짜 연도 2자리.
+
+EX) 2051년 시점 '49/01/01'
+YY = 2049,  RR = 2149
+
+## 날짜 함수 -2
+
+SELECT EMPLOYEE_ID, HIRE_DATE
+, MONTHS_BETWEEN(SYSDATE, HIRE_DATE) AS "입사 주수"
+, ADD_MONTHS(HIRE_DATE, 6) AS "입사 후 6개월"
+, NEXT_DAY(HIRE_DATE, 'FRIDAY') AS "입사 후 금요일 날짜"
+, LAST_DAY(HIRE_DATE) AS "입사한 달의 월말"
+FROM EMPLOYEES
+WHERE MONTHS_BETWEEN(SYSDATE, HIRE_DATE) < 150 ;

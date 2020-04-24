@@ -1,0 +1,48 @@
+## TO_CHAR 함수
+
+select empno, ename, hiredate
+, to_char(hiredate, 'yyyy') "1"     //HIREDATE를 네 자리 수의 연도로 표현.
+, to_char(sysdate,'year') "2"       //SYSDATE의 연도를 영어로 표현.
+, to_char(sysdate,'MM') "3"         //SYSDATE의 월을 두 자리의 숫자로 표현.
+, to_char(sysdate,'MON') "4"        //SYSDATE의 월을 세 자리의 영어로 표현.
+, to_char(sysdate,'month') "5"      //SYSDATE의 월을 영어로 표현.
+, to_char(sysdate,'mm') "6"         //SYSDATE의 월을 두 자리의 숫자로 표현.(3번과 동일.)
+, to_char(sysdate,'dd') "7"         //SYSDATE의 일을 두 자리의 숫자로 표현.
+, to_char(sysdate,'dd-mon-rr') "8"  //SYSDATE의 일을 일(숫자)-월(영어)-연도(숫자 2자리)
+, to_char(sysdate,'dd-mon-rr','nls_date_language=korean') "9"     //SYSDATE의 일을 일(숫자)-월(한국어)-연도(숫자 2자리)
+from emp;
+
+##TO_CHAR 함수에 문자열 쓰기
+
+SELECT EMPNO, ENAME
+, TO_CHAR(HIREDATE, '"입사년도는 " YYYY "입니다. "')              //TO_CHAR(원하는 컬럼, '"인용구"' )
+, TO_CHAR(HIREDATE, '"입사 분기는 "Q"분기 입니다. "')
+, TO_CHAR(HIREDATE, '"일주일 중 "D"번째 날에 입사했습니다. "')
+FROM EMP;
+
+SELECT EMPNO, ENAME
+, TO_CHAR(HIREDATE, '"입사년도는 " YYYYSP "입니다. "')              //TO_CHAR(원하는 컬럼, '"인용구"' ) - 영어로 표현
+, TO_CHAR(HIREDATE, '"입사 분기는 "QSP"분기 입니다. "')
+, TO_CHAR(HIREDATE, '"일주일 중 "DSP"번째 날에 입사했습니다. "')
+FROM EMP;
+
+SELECT EMPNO, ENAME
+, TO_CHAR(HIREDATE, '"입사년도는 " YYYYSPTH "입니다. "')              //TO_CHAR(원하는 컬럼, '"인용구"' ) - 영어로 표현
+, TO_CHAR(HIREDATE, '"입사 분기는 "QSPTH"분기 입니다. "')
+, TO_CHAR(HIREDATE, '"일주일 중 "DSPTH"번째 날에 입사했습니다. "')
+FROM EMP;
+
+
+# 주차
+
+SELECT TO_CHAR(SYSDATE, 'IW') AS WEEK
+FROM DUAL;                                  // SYSDATE (현재) 몇 주차 인지 나타냄.
+
+# 요일
+
+SELECT TO_CHAR(SYSDATE, 'DAY') AS DAY
+FROM DUAL;                                  // SYSDATE (현재) 무슨 요일 인지 나타냄.
+
+SELECT TO_CHAR(SYSDATE, '"현재 시각은 " HH24:MI:SS AM "입니다. "')
+FROM DUAL;
+

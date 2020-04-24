@@ -1,0 +1,13 @@
+## TO_CHAR 함수로 숫자 표현.
+
+SELECT SAL
+, TO_CHAR(SAL, '$') "1"
+, TO_CHAR(SAL, '$9') "2"
+, TO_CHAR(SAL, '$99') "3"
+, TO_CHAR(SAL, '$999') "4"
+, TO_CHAR(SAL, '$9,999') "5"
+, TO_CHAR(SAL, 'FM$9999') "6"
+, TO_CHAR(SAL, '$9999') "7"
+, TO_CHAR(SAL, '$0,999') "8"
+FROM EMP
+WHERE SAL IS NOT NULL;

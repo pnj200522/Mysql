@@ -1,0 +1,34 @@
+## CONDITIONAL EXPRESSION
+
+ #DECODE 함수
+SELECT DEPTNO, EMPNO, SAL                                                   //DEPTNO, EMPNO, SAL을 출력
+, DECODE(DEPTNO, 10, SAL*1.1, 20, SAL*1.2, SAL) AS CONDITION_RESULT         //DEPTNO가 10이면 SAL*1.1을 출력, 20이면 SAL*1.2를 출력 그외
+                                                                              에는 SAL을 출력.(조건부자리에 컬럼명과 해당컬럼 행만 올수 있다.)
+FROM EMP
+ORDER BY 4 DESC;
+
+조건부 자리에 조건식을 쓰고 싶다면
+
+  #SIMPLE CASE 표현식
+ SELECT DEPTNO, EMPNO, SAL
+ , CASE DEPTNO WHEN 10 THEN SAL*1.1 WHEN 20 THEN SAL*1.2              //DEPTNO가 10이면 SAL*1.1을 출력, 20이면 SAL*1.2를 출력 그외
+ ELSE SAL END AS CONDITION_RESULT                                       에는 SAL을 출력.(조건부자리에 조건식이 올 수 있다.)
+ FROM EMP
+ ORDER BY 4 DESC;
+  
+  #SEARCHED CASE 표현식
+ SELECT DEPTNO, EMPNO, SAL
+ , CASE WHEN DEPTNO = 10 THEN SAL*1.1 WHEN DEPTNO = 20 THEN SAL*1.2
+ ELSE SAL END AS CONDITION_RESULT
+ FROM EMP
+ ORDER BY 4 DESC;
+ 
+ ###문제. 급여 등급에 따라 A,B,C로 구분된 결과를 쿼리하세요.
+ 
+ 4000 이상 : A
+ 4000 미만 : B
+ 2000 미만 : C
+ 
+ ## SELECT ENAME, SAL, CASE TRUNC(SAL/2000) WHEN 0 THEN 'C' WHEN 1 THEN 'B' WHEN 2 THEN 'A' ELSE 'X' END 
+    FROM EMP
+    ORDER BY 3;

@@ -1,0 +1,34 @@
+SELECT EMPNO, SAL, COUNT(*) OVER 
+(ORDER BY SAL RANGE BETWEEN 50 PRECEDING AND 150 FOLLOWING) AS MOV_COUNT    //갯수를 구하는 데 어떤 갯수냐 : SAL의 값에서 -50 +150했을때
+FROM EMP;                                                                     그 사이 값들의 갯수
+
+###입사년도 무관하며, 하반기에 입사한 사원들의 월별 평균 급여를 출력하는 쿼리문을 작성하시오.
+
+SELECT TO_CHAR(HIREDATE,'MM') AS "Month", AVG(SAL) AS "AVG_SAL"
+FROM EMP
+WHERE TO_CHAR(HIREDATE,'Q') IN (3,4)
+GROUP BY TO_CHAR(HIREDATE, 'MM')
+ORDER BY 1 ;
+
+###입사년도 별, 부서별 직무에 따른 사원들의 월별 평균 급여를 출력하는 쿼리문을 작성하시오.
+
+SELECT TO_CHAR(HIREDATE, 'YYYY') HD, DEPTNO, JOB, AVG(SAL)
+FROM EMP
+GROUP BY TO_CHAR(HIREDATE, 'YYYY'), DEPTNO, JOB
+ORDER BY 1,2,3;
+
+### 아래 두 쿼리문의 차이범을 찾아보시오
+
+SELECT DEPTNO, SUM(SAL)
+FROM EMP
+GROUP BY DEPTNO
+HAVING DEPTNO != 20
+ORDER BY DEPTNO;
+
+SELECT DEPTNO, SUM(SAL)
+FROM EMP
+WHERE DEPTNO != 20
+GROUP BY DEPTNO
+ORDER BY DEPTNO;
+
+##결과는 같지만 출력 속도가 다름, WHERE 절이 들어간 쿼리가 더 느리다 (왜냐하면 테이블 전체를 선별하기 때문)

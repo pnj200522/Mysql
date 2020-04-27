@@ -1,0 +1,32 @@
+SELECT HIREDATE FROM EMP ORDER BY 1;        //HIREDATE를 오름차순을 출력.
+
+##그룹함수 (SUM, MIN, MAX, AVG)
+
+SELECT COUNT(*)   //행 전부 출력
+,COUNT(EMPNO)     //EMPNO행 전부 출력(NULL 제외)
+,COUNT(SAL)       //SAL행 전부 출력(NULL 제외)
+,COUNT(MGR)       //MGR행 전부 출력(NULL 제외)
+,COUNT(COMM)      //COMM행 전부 출력(NULL 제외)
+FROM EMP;
+
+# COUNT와 DISTINCT
+
+SELECT COUNT(DISTINCT EMPNO), COUNT(DISTINCT SAL), COUNT(DISTINCT MGR), COUNT(DISTINCT COMM)
+FROM EMP;                                                                                       //COUNT안에 DISTINCT써줘야 함.
+
+
+SELECT COUNT(COMMISSION_PCT), COUNT(DISTINCT COMMISSION_PCT)
+FROM EMPLOYEES;                                                           //앞에거는 중복없이 셈, 뒤에는 중복제거 후 셈.
+
+SELECT SUM(COMMISSION_PCT), AVG(COMMISSION_PCT) FROM EMPLOYEES;           //NULL을 무시하고 계산 가능.
+
+###*AVG()를 이용하여 동일한 결과를 나타내기.
+
+##SELECT SUM(COMMISSION_PCT)/COUNT(COMMISSION_PCT) FROM EMPLOYEES;
+
+### COMMISSION_PCT 컬럼의 모든 ROW를 고려한 평균을 산출하는 QUERY를 작성하시오.
+
+##SELECT AVG(NVL(COMMISSION_PCT,0)) FROM EMPLOYEES;
+
+
+

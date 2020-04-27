@@ -1,0 +1,35 @@
+## NVL, NVL2, NULLIF, COALESCE
+
+ #NVL2 함수
+SELECT EMPNO, SAL, COMM
+  , SAL * 12 + NVL(COMM,0) A                        //COMM이 NULL이면 0으로 계산.
+  , NVL2(COMM, SAL * 12 + COMM, SAL * 12) B         //COMM이 NULL이 아니면 두 번째 NULL이면 세 번째
+  , NVL2(COMM, 'SAL * 12 + COMM', 'SAL * 12') C     //COMM이 NULL이 아니면 두 번째(''으로 둘러싸여 있기때문에 문자열 출력) 
+                                                      NULL이면 세 번째
+FROM EMP;
+
+ #NULLIF 함수
+CREATE TABLE T2 (COL1 VARCHAR(30), COL2 VARCHAR2(30));
+
+INSERT INTO T2 VALUES('KIM', 'DEVELOPER');
+INSERT INTO T2 VALUES('LG', 'GS');
+INSERT INTO T2 VALUES(NULL, 'KS');
+INSERT INTO T2 VALUES('SAMSUNG', 'ORACLE');
+INSERT INTO T2 VALUES('SAMSUNG', NULL);
+
+SELECT COL1, COL2, NULLIF(LENGTH(COL1), LENGTH(COL2)) "COMPARE"
+FROM T2;                                                          //NULLIF(1,2) 1과 2가 같으면 NULL 아니면 1 출력.
+
+ #COALESCE 함수
+DROP TABLE T1 PURGE;        //T1지우고
+
+CREATE TABLE T1 AS SELECT COMM A, MGR B, EMPNO C
+FROM EMP;                                             //EMP테이블에서 컬럼따옴
+
+SELECT A, B, C, NVL(NVL(NVL(A,B),C),0) AS RET FROM T1;  //A가 NULL이면 B, NVL(A,B)가 NULL이면 C, NVL(NVL(A,B),C)가 NULL이면 0을 나타
+                                                          내는 함수인데, 갯수가 많아지면 쓰기 어려움
+                                                          
+  따라서
+
+SELECT A, B, C, COALESCE(A,B,C,0) AS RET
+FROM T1;                                              //이렇게 표현.

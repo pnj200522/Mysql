@@ -46,3 +46,4 @@ FROM DUAL;                                  // SYSDATE (현재) 무슨 요일 �
 SELECT TO_CHAR(SYSDATE, '"현재 시각은 " HH24:MI:SS AM "입니다. "')
 FROM DUAL;
 
+-COMMIT CHANGED-

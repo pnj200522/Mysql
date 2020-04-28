@@ -54,3 +54,6 @@ SELECT ENAME, INSTR(ENAME, 'S'), INSTR(ENAME, 's') FROM EMP;                //IN
 ## LPAD 함수
 
 SELECT LPAD('Page 1', 15, '-*-') FROM DUAL;                                 //LPAD('Page 1', 15, '-*-') Page 1에서 1이 15번째 되도록 왼쪽부터 -*-삽입
+
+
+-COMMIT CHANGED-

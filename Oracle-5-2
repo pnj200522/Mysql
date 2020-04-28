@@ -1,0 +1,27 @@
+## EQUI JOIN
+
+SELECT * FROM EMPLOYEES E, JOBS J
+ORDER BY 1;                                   //각 테이블 모든 행X행 만큼 나옴.
+
+SELECT E.EMPLOYEE_ID, E.LAST_NAME, E.SALARY, J.*
+FROM EMPLOYEES E, JOBS J
+WHERE E.JOB_ID = J.JOB_ID;                    //각 테이블에 JOB_ID가 같은 경우 출력.
+
+## NON-EQUI JOIN
+
+SELECT E.EMPNO, E.SAL, '...' AS OTHERS, S.*
+FROM EMP E, SALGRADE S
+ORDER BY 1;                                   //각 테이블 모든 행X행 만큼 나옴.  
+
+SELECT E.EMPNO, E.SAL, '...' AS OTHERS, S.*
+FROM EMP E, SALGRADE S
+WHERE E.SAL >= S.LOSAL
+AND E.SAL <= S.HISAL                          //EMP테이블의 SAL이 SALGRADE테이블의 LOSAL보다 크고 HISAL보다 작은 행들을 출력.
+ORDER BY 1;
+
+SELECT S.GRADE, E.JOB, COUNT(*) CNT, AVG(E.SAL) AVG_SAL
+FROM EMP E, SALGRADE S
+WHERE E.SAL >= S.LOSAL
+AND E.SAL <= S.HISAL
+GROUP BY S.GRADE, E.JOB
+ORDER BY S.GRADE, AVG_SAL, DESC;              //AVG(E.SAL)을 GRADEDHK JOB별로 

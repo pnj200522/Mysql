@@ -19,3 +19,5 @@ grant dba to hr;
 col tname for a20;
 
 select * from tab;
+
+-COMMIT CHANGED-

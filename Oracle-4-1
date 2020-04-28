@@ -33,3 +33,5 @@ SELECT A, B, C, NVL(NVL(NVL(A,B),C),0) AS RET FROM T1;  //A가 NULL이면 B, NVL
 
 SELECT A, B, C, COALESCE(A,B,C,0) AS RET
 FROM T1;                                              //이렇게 표현.
+
+-COMMIT CHANGED-

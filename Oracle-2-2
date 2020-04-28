@@ -28,4 +28,4 @@ ORDER BY "Manager" DESC;                                    //EMP테이블에 DE
 SELECT UPPER(ENAME), LOWER(ENAME), INITCAP(ENAME)
 FROM EMP;                                                   //UPPER는 파라미터 값을 대문자로,LOWER는 소문자로, INITCAP은 첫글자만 대문자로
 
-
+-COMMIT CHANGED-

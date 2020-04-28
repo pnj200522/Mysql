@@ -46,3 +46,5 @@ from emp
 
 --select distinct department_id, job_id
 --from employees;
+
+-COMMIT CHANGED-

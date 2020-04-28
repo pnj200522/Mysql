@@ -1,0 +1,30 @@
+## JOIN -ON
+
+SELECT E.EMPNO, E.DEPTNO AS EDNO, D.*
+FROM EMP E JOIN DEPT D
+ON E.DEPTNO = D.DEPTNO;
+
+#일반 조건 추가 시 WHERE, AND 모두 시작 가능..
+
+SELECT E.EMPNO, E.SAL, E.DEPTNO AS EDNO, D.*
+FROM EMP E JOIN DEPT D
+ON E.DEPTNO = D.DEPTNO
+WHERE SAL > 1500;
+
+SELECT E.EMPNO, E.SAL, E.DEPTNO AS EDNO, D.*
+FROM EMP E JOIN DEPT D
+ON E.DEPTNO = D.DEPTNO
+AND SAL > 1500;
+---------------------------------------------------------------------
+
+## JOIN 했을 시 컬럼의 ALIAS 관한 조건.
+
+SELECT E.EMPNO, E.SAL, DEPTNO AS EDNO, D.*
+FROM EMP E JOIN DEPT D
+ON E.DEPTNO = D.DEPTNO
+AND SAL > 1500                               //오류남..공통 컬럼에 대한 ALIAS가 없음.
+
+SELECT E.EMPNO, E.SAL, E.DEPTNO AS EDNO, D.*
+FROM EMP E JOIN DEPT D
+ON E.DEPTNO = D.DEPTNO
+AND SAL > 1500                                //공통 컬럼에 ALIAS를 넣어줬더니 오류가 없어짐.

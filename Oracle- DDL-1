@@ -1,0 +1,51 @@
+###데이터 타입
+
+##문자 : CHAR, VARCHAR2, LONG, CLOB
+
+##
+숫자 : NUMBER(4) - 정수
+숫자 : NUMBER(10, 2) - 고정 (FIXED) 소수점 //소수점 2자리까 표현 가능 하며 사용가능한 자릿수는 소수점이하 포함 10 자리.
+숫자 : NUMBER - 부동 (FLOAT)소수점
+
+##
+날짜 : COL1 DATE
+날짜 : COL1 TIMESTAMP
+날짜 : COL1 TIMESTAMP WITH TIMEZONE
+날짜 : COL1 TIMESTAMP WITH LOCAL TIMEZONE
+날짜 : COL1 INTERVAL YEAR TO MONTH
+날짜 : COL1 DAT TO SECOND
+
+##
+기타 : CLOB, BLOB, BFILE, ....
+
+###
+문자형 데이터 타입 확인하는방법
+
+DROP TABLE T1 PURGE //테이블 삭제 후
+CREATE TABLE T1 (C1 CHAR(5), C2 VARCHAR2(5)); //이와 같은 테이블 생성.
+INSERT INTO T1(C1,C2) VALUES('ABC' , 'ABC');  //이와 같은 행 삽입.
+SELECT LENGTH(C1), LENGTH(C2) FROM T1;        //C1의 길이는 5 , C2의 길이는 3
+SELECT DUMP(C1), DUMP(C2) FROM T1;            //C1과 C2의 타입과 길이와 아스키코드가 나오는데 C1은 'ABC'외에 2개가 더 있음.
+
+###
+문자열 데이터 타입 차이에 따른 비교 결과 차이 비교
+
+*CHAR 타입의 문자열 컬럼
+SELECT C1, C2 FROM T1
+WHERE C1 = 'ABC';
+--WHERE C1 = 'ABC ';
+--WHERE C1 = 'ABC   '; //C1은 아무리 공백을 넣어도 검색이 됨, 하지만 VARCHAR2였던 C2는 공백을 넣으면 검색이 안됨.
+
+* C1에 공백을 지우고 싶다면 TRIM함수를 사용
+SELECT * FROM T1
+WHERE TRIM(C1) = C2;
+
+###
+CREATE TABLE T2
+(C1 NUMBER,           //아무 숫자나 가능.
+ C2 NUMBER (4,2),     //소수점 이하 두 자리까지 나타내는데 소수점이하 두자리 포함(무조건) 네 자리 쓸 수 있음. 99.99 (O) 9999 (X)
+ C3 NUMBER (2,4),     //소수점 이하 네 자리까지 나타내는데 소수점이하 네자리 포함(무조건) 두 자리 쓸 수 있음. 0.0011 (O) 1.0001 (X)
+ C4 NUMBER (4,0),     //소수점 이하 0 자리까지 나타내는데 소수점이하 0자리 포함(무조건) 네 자리 쓸 수 있음. 아무렇게 네 자리 쓰면됨.
+ C5 NUMBER (4,-1));   //첫 째자리에서 반올림한 4자리 수
+ 
+ 

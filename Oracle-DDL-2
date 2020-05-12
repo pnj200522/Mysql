@@ -1,0 +1,60 @@
+###
+테이블 생성 1 (제약조건 없는 상태)
+CREATE TABLE T_DEPT (DEPTNO NUMBER(2)                         
+                     , DNAME VARCHAR2(10)
+                     , LOC VARCHAR2(10) DEFAULT 'Seoul');
+                     
+테이블 생성 2 (제약조건 생성)
+##
+-------------------T_DEPT 테이블
+CREATE TBLE T_DEPT
+(DEPTNO NUMBER(2) CONSTRAINT T_DEPT_DEPTNO_PK PRIMARY KEY,  //'T_DEPT_DEPTNO_PK'라는 제약조건이름 명명, 이 컬럼은 PRIMARY KEY
+ DNAME VARCHAR2(10) CONSTRAINT T_DEPT_DNAME_NN NOT NULL,    //'T_DEPT_DNAME_NN '라는 제약조건이름 명명, 이 컬럼은 NOT NULL
+ LOC VARCHAR2(10));                                         // 제약조건 없음.
+ 
+ -------------------T_EMP 테이블
+ CREATE TABLE T_EMP
+ (EMPNO NUMBER(4) CONSTRAINT T_EMP_EMPNO_PK PRIMARY KEY,    //'T_EMP_EMPNO_PK'의 이름을 가지고 PRIMARY KEY.
+  ENAME VARCHAR2(10) CONSTRAINT T_EMP_ENAME_NN NOT NULL,    //'T_EMP_ENAME_NN'의 이름을 가지고 NOT NULL.
+  SAL NUMBER(10,2) CONSTRAINT T_EMP_SAL_CK CHECK(SAL > 0)   //'T_EMP_SAL_CK'의 이름을 가지고 CHECK(조건절이 참인 경우만).
+  HP VARCHAR(11) CONSTRAINT T_EMP_HP_NN NOT NULL            //'T_EMP_HP_NN'의 이름을 가지고 NOT NULL.
+                 CONSTRAINT T_EMP_HP_UK UNIQUE,             //'T_EMP_HP_UK'의 이름을 가지고 UNIQUE.
+  DEPTNO NUMBER(2) CONSTRAINT T_EMP_DEPTNO_FK REFERENCES T_DEPT(DEPTNO)); //'T_EMP_DEPTNO_FK'의 이름을 가지고
+                                                                              T_DEPT테이블의 DEPTNO컬럼 참조.
+                                                                              
+##
+두 개 이상의 컬럼으로 하나의 제약을 선언 하고자 할 경우.
+테이블레벨로 제약조건.
+
+CREATE TABLE T_CUSTOMERS
+ (CUSTOMER_ID NUMBER PRIMARY KEY,
+  JUMIN1 VARCHAR2(6),
+  JUMIN2 VARCHAR2(7),
+  UNIQUE(JUMIN1, JUMIN2));
+
+##
+DEFAULT 옵션 확인
+
+SELECT TABLE_NAME, COLUMN_NAME, DATA_TYPE, DATA_DEFAULT
+FROM USER_TAB_COLUMNS
+WHERE TABLE_NAME = 'EMP';
+
+##
+DEFAULT 옵션 추가
+
+ALTER TABLE EMP MODIFY(HIREDATE DATE DEFAULT TRUNC(SYSDATE));
+  
+ ###
+ 제약 조건 관련 정보 확인하는 방법
+ USER_CONSTRAINTS 테이블에서 확인
+ 
+ SELECT CONSTRAINT_NAME, TABLE_NAME, CONSTRAINT_TYPE, SEARCH_CONDITION
+ FROM USER_CONSTRAINTS
+ WHERE TABLE_NAME IN ('T2_EMP', 'T2_DEPT');
+ 
+ ###
+ 제약조건 추가
+ 
+ ALTER TABLE T2_DEPT
+ ADD CONSTRAINT DEPT_PK
+ PRIMARY KEY(DEPTNO);

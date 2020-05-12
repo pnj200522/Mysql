@@ -1,0 +1,27 @@
+##
+테이블 삭제
+
+SELECT OBJECT_NAME, ORIGINAL_NAME, TYPE, DROPTIME
+FROM USER_RECYCLEBIN;                             //휴지통 보기
+
+
+##
+휴지통에 있는 테이블 보기
+
+SELECT * FROM (휴지통에 있는 테이블 OBJECT_NAME);
+
+##
+휴지통 비우기
+
+PURGE RECYCLEBIN;
+
+##
+임시 테이블 생성
+CREATE GLOBAL TEMPORARY TABLE TEMP1
+(ID NUMBER, NAME VARCHAR2(10))
+ON COMMIT DELETE ROWS;              //COMMIT 하면 테이블 구조는 그대로 두고 임시테이블 삭제.
+
+CREATE GLOBAL TEMPORARY TABLE TEMP1
+(ID NUMBER, NAME VARCHAR2(10))
+ON COMMIT PRESERVE ROWS;            //COMMIT 해도 데이터 저장되어있음, 하지만 로그아웃 후 다시 로그인 하면 테이블 구조는 그대로 두고
+                                      임시 테이블 삭제.

@@ -1,0 +1,28 @@
+# VIEW UPDATE 불가 상황
+
+-- 그룹함수
+CREATE OR REPLACE VIEW CV_DML_U_TEST1
+AS
+SELECT JOB_ID JID, ROUND(AVG(SALARY)) AV_SAL
+FROM EMPLOYEES
+GROUP BY JOB_ID 
+ORDER BY 2;
+
+UPDATE CV_DML_U_TEST1 SET AV_SAL = 5000 WHERE JID = 'PU_CLERK';
+--SQL 오류: ORA-01732: data manipulation operation not legal on this view
+
+-- DISTINCT
+CREATE OR REPLACE VIEW CV_DML_U_TEST2
+AS
+SELECT DISTINCT DEPARTMENT_ID, JOB_ID, SALARY
+FROM EMPLOYEES
+WHERE DEPARTMENT_ID IS NOT NULL
+ORDER BY 1,2;
+
+UPDATE CV_DML_U_TEST2 SET SALARY = (SELECT SAL 
+                                    FROM EMP  
+                                    WHERE ENAME = 'KING')
+                                    
+WHERE DEPARTMENT_ID =30;
+--SQL 오류: ORA-01732: data manipulation operation not legal on this view
+ 
